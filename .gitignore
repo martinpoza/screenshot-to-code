@@ -1,0 +1,12 @@
+# Libraries downloaded by npm (huge, and anyone can re-download them)
+node_modules/
+
+# Secret settings — never upload these
+.env
+
+# Files our tool generates
+output/
+
+# Clutter created by the operating system / editors
+.DS_Store
+Thumbs.db
