@@ -17,7 +17,7 @@ Component.tsx
 ## Progress
 
 - [x] Part 0: Project setup (Git + GitHub)
-- [ ] Part 1: Hello Node
+- [x] Part 1: Hello Node
 - [ ] Part 2: Talk to Ollama
 - [ ] Part 3: The AI looks at an image
 - [ ] Part 4: The AI writes code

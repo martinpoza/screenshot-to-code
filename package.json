@@ -1,0 +1,22 @@
+{
+  "name": "screenshot-to-code",
+  "version": "1.0.0",
+  "description": "Turn a screenshot of any user interface into a working React component, using a free AI model that runs locally on your own computer with [Ollama](https://ollama.com).",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node hello.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinpoza/screenshot-to-code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martinpoza/screenshot-to-code/issues"
+  },
+  "homepage": "https://github.com/martinpoza/screenshot-to-code#readme"
+}
