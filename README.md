@@ -18,8 +18,8 @@ Component.tsx
 
 - [x] Part 0: Project setup (Git + GitHub)
 - [x] Part 1: Hello Node
-- [ ] Part 2: Talk to Ollama
-- [ ] Part 3: The AI looks at an image
+- [x] Part 2: Talk to Ollama
+- [x] Part 3: The AI looks at an image
 - [ ] Part 4: The AI writes code
 - [ ] Part 5: The AI checks the code
 - [ ] Part 6: A real command-line tool
