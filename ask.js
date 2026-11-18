@@ -1,6 +1,6 @@
 
 const OLLAMA_URL = "http://localhost:11434/api/chat";
-const MODEL = "llama3.1";
+const MODEL = "qllama3.1"; //qwen2.5vl:3b
 
 async function askOllama(question) {
 
@@ -19,9 +19,10 @@ async function askOllama(question) {
     throw new Error(`Ollama answered with error ${response.status}`);
   }
    const data = await response.json();  
+   // console.log(data); to see the full response from Ollama
   return data.message.content;
 }
 console.log("Thinking... (the first answer can take a minute)");
 
-const answer = await askOllama("Explain what a React component is in one sentence, and who is Newton.");
+const answer = await askOllama("Explain what a React component is in one sentence.");
 console.log("AI says:", answer);
