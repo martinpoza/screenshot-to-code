@@ -1,6 +1,6 @@
 const projectName ="Screenshot to Code";
 const partNumber = 1;
-console.log("Hello, bittch, from " + projectName + "!");
+console.log("Hello, from " + projectName + "!");
 console.log(`we are in part ${partNumber} of the project`);
 
 function describeStep(stepNumber, task){
