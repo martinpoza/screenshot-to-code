@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";                       // builds file paths: "examples" + "login.png"
-import readline from "node:readline/promises";      // asks questions in the terminal
-import { askOllama } from "./ollama.js"; 
+import { askOllama } from "./ollama.js";
+import { chooseFile } from "./choose-file.js";      // our reusable menu
 
 const VISION_MODEL = "qwen2.5vl:3b"; // qwen2.5vl:3b, qwen2.5vl:7b, qwen2.5vl:14b, qwen2.5vl:30b
 const PROMPT = `You are looking at a UI screenshot. Your job is to describe the structure, not the styling.
@@ -46,49 +46,25 @@ async function describeUI(imagePath) {
   }
 }
 
-const EXAMPLES_FOLDER = "examples";
-
-// Shows the images in the examples folder as a numbered list
-// and asks the user to pick one by typing its number.
-async function chooseImage() {
-  // 1. List every file in the folder, keeping only images.
-  const images = fs
-    .readdirSync(EXAMPLES_FOLDER)
-    .filter((name) => /\.(png|jpe?g|webp)$/i.test(name));
-
-  if (images.length === 0) {
-    throw new Error(`No images found in the "${EXAMPLES_FOLDER}" folder.`);
-  }
-
-  // 2. Print the menu: 1) login.png, 2) photo1.png, ...
-  console.log("Images in the examples folder:");
-  images.forEach((name, index) => {
-    console.log(`  ${index + 1}) ${name}`);
-  });
-
-  // 3. Ask the question and wait for the user to type an answer.
-  const terminal = readline.createInterface({ input: process.stdin, output: process.stdout });
-  const answer = await terminal.question("Which one? Type its number: ");
-  terminal.close();
-
-  // 4. Turn the typed text into a list position (people count from 1, lists from 0).
-  const chosen = images[Number(answer) - 1];
-  if (!chosen) {
-    throw new Error(`"${answer}" is not a number from the list.`);
-  }
-
-  return path.join(EXAMPLES_FOLDER, chosen);
-}
-
 // If an image was typed after the command, use it.
-// Otherwise (?? means "if nothing"), show the menu and let the user choose.
-const imagePath = process.argv[2] ?? (await chooseImage());
+// Otherwise (?? means "if nothing"), show the menu of images and let the user choose.
+const imagePath = process.argv[2] ?? (await chooseFile("examples", /\.(png|jpe?g|webp)$/i));
 
 console.log(`Looking at ${imagePath}... (this can take a few minutes)`);
 const start = Date.now();                     // remember the start time
 
 const description = await describeUI(imagePath);
 
-// JSON.stringify(..., null, 2) prints the object nicely indented.
-console.log(JSON.stringify(description, null, 2));
+// JSON.stringify(..., null, 2) turns the object into nicely indented text.
+// (No need to print it: askOllama already showed the answer live.)
+const jsonText = JSON.stringify(description, null, 2);
+
+// Save the JSON to a file, so the next step (generate.js) can use it
+// without waiting for the slow vision model again.
+// path.parse("examples/login.png").name  ->  "login"
+const outputPath = path.join("output", path.parse(imagePath).name + ".json");
+fs.mkdirSync("output", { recursive: true });  // create the folder if it doesn't exist
+fs.writeFileSync(outputPath, jsonText);
+
+console.log(`Saved to ${outputPath}`);
 console.log(`Done in ${Math.round((Date.now() - start) / 1000)} seconds.`);
