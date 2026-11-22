@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/martinpoza/screenshot-to-code/issues"
   },
-  "homepage": "https://github.com/martinpoza/screenshot-to-code#readme"
+  "homepage": "https://github.com/martinpoza/screenshot-to-code#readme",
+  "dependencies": {
+    "typescript": "^7.0.2"
+  }
 }
