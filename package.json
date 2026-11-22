@@ -9,6 +9,7 @@
     "ask": "node ask.js",
     "describe": "node describe.js",
     "generate": "node generate.js",
+    "validate": "node validate.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,6 @@
   },
   "homepage": "https://github.com/martinpoza/screenshot-to-code#readme",
   "dependencies": {
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.3"
   }
 }

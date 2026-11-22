@@ -20,8 +20,8 @@ Component.tsx
 - [x] Part 1: Hello Node
 - [x] Part 2: Talk to Ollama
 - [x] Part 3: The AI looks at an image
-- [ ] Part 4: The AI writes code
-- [ ] Part 5: The AI checks the code
+- [x] Part 4: The AI writes code
+- [x] Part 5: The AI checks the code
 - [ ] Part 6: A real command-line tool
 - [ ] Part 7: Examples and polish
 
